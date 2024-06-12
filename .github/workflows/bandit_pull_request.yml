@@ -1,1 +1,28 @@
+name: bandit scan
+on:
+  pull_request:
+    branches: [ main, develop ]
 
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+    name: bandit code scanning
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2
+      
+    - name: Security check - Bandit
+      uses: ioggstream/bandit-report-artifacts@v0.0.2
+      with: 
+        path: "."
+        level: high
+        confidence: high
+        exit_zero: true 
+        
+    - name: upload bandit scan artifact
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: bandit report
+        path: output/security_report.txt
