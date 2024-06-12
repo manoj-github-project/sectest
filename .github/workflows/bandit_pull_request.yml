@@ -1,0 +1,17 @@
+name: bandit scan on every pull request
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+    name: bandit code scanning
+    steps:
+    - name: scan by bandit
+      uses: shundor/bandit-action@v1
+      with: 
+        path: "."
+        level: high
+        confidence: high
+        exit_zero: true   
