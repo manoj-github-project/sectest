@@ -21,7 +21,7 @@ jobs:
         exit_zero: true 
         
     - name: upload bandit scan artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       if: always()
       with:
         name: bandit report
