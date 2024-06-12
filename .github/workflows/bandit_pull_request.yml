@@ -19,3 +19,10 @@ jobs:
         level: high
         confidence: high
         exit_zero: true 
+        
+    - name: upload bandit scan artifact
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: bandit report
+        path: bandit-report.json
